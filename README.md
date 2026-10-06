@@ -13,8 +13,11 @@ dataset. It does not inspect anyone else's traffic and has no web UI.
 
 ## Install
 
+Webadmin: Settings → Applications → Install a custom app → paste this repo URL.
+CLI:
+
 ```bash
-yunohost app install https://path/to/this/repo
+yunohost app install https://github.com/quartztester/ooni-probe_ynh
 ```
 
 Options:
@@ -36,3 +39,8 @@ sudo -u ooni-probe HOME=/var/www/ooni-probe /var/www/ooni-probe/ooniprobe list  
 
 Results live in `/var/www/ooni-probe/.ooniprobe/`. Uninstall removes the user,
 service, timer, logo, and data.
+
+## License
+
+Package scripts: GPL-3.0. Upstream OONI Probe (BSD-3-Clause):
+https://github.com/ooni/probe-cli
