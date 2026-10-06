@@ -5,7 +5,6 @@
 #=================================================
 source /usr/share/yunohost/helpers
 
-ynh_abort_if_errors
 
 # Download the official static binary (pinned version, checksum-verified)
 ynh_script_progression "Setting up OONI Probe binary..."
@@ -35,8 +34,8 @@ ynh_script_progression "Starting first measurement run..."
 systemctl start "$app.timer"
 
 # Tile logo for the SSO portal (no web UI; icon is cosmetic)
-if [ -f "$YNH_APP_BASEDIR/conf/ooniprobe.png" ]; then
-    cp "$YNH_APP_BASEDIR/conf/ooniprobe.png" "/usr/share/yunohost/applogos/$app.png"
+if [ -f "$YNH_APP_BASEDIR/doc/ooniprobe.png" ]; then
+    cp "$YNH_APP_BASEDIR/doc/ooniprobe.png" "/usr/share/yunohost/applogos/$app.png"
     yunohost user permission update "$app.main" --logo "/usr/share/yunohost/applogos/$app.png" || true
 fi
 
