@@ -1,0 +1,16 @@
+[Unit]
+Description=OONI Probe censorship measurement run (app: __APP__)
+Documentation=https://github.com/ooni/probe-cli
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=__APP__
+Environment=HOME=__INSTALL_DIR__
+ExecStart=__INSTALL_DIR__/ooniprobe --batch run websites
+# A capped run of web-connectivity tests takes a few minutes; allow slack.
+TimeoutStartSec=1800
+Nice=10
+NoNewPrivileges=true
+MemoryMax=400M

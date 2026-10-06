@@ -1,0 +1,43 @@
+#!/bin/bash
+
+#=================================================
+# OONI Probe install — static binary + systemd timer
+#=================================================
+source /usr/share/yunohost/helpers
+
+ynh_abort_if_errors
+
+# Download the official static binary (pinned version, checksum-verified)
+ynh_script_progression "Setting up OONI Probe binary..."
+ynh_setup_source --dest_dir="$install_dir"
+chmod +x "$install_dir/ooniprobe"
+
+# OONI home == install_dir (it uses $HOME/.ooniprobe); pre-seed consented config
+ynh_script_progression "Writing OONI config (websites suite only, no speed tests)..."
+mkdir -p "$install_dir/.ooniprobe"
+ynh_config_add --template=ooniprobe-config.template \
+    --destination="$install_dir/.ooniprobe/config.json"
+
+ynh_script_progression "Provisioning app dirs..."
+mkdir -p "$install_dir/.ooniprobe/msmts" "$install_dir/.ooniprobe/engine"
+
+chown -R "$app:$app" "$install_dir"
+
+# Systemd: oneshot service + repeating timer
+ynh_script_progression "Configuring systemd service and timer..."
+ynh_config_add_systemd
+ynh_config_add --template=systemd.timer \
+    --destination="/etc/systemd/system/$app.timer"
+systemctl enable "$app.timer" --quiet
+systemctl daemon-reload
+
+ynh_script_progression "Starting first measurement run..."
+systemctl start "$app.timer"
+
+# Tile logo for the SSO portal (no web UI; icon is cosmetic)
+if [ -f "$YNH_APP_BASEDIR/conf/ooniprobe.png" ]; then
+    cp "$YNH_APP_BASEDIR/conf/ooniprobe.png" "/usr/share/yunohost/applogos/$app.png"
+    yunohost user permission update "$app.main" --logo "/usr/share/yunohost/applogos/$app.png" || true
+fi
+
+ynh_script_progression "OONI Probe installation is completed!"

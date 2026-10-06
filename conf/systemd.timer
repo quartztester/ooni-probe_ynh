@@ -1,0 +1,11 @@
+[Unit]
+Description=Run OONI Probe censorship measurements (app: __APP__)
+
+[Timer]
+OnBootSec=10min
+OnUnitActiveSec=__RUN_INTERVAL_HOURS__h
+RandomizedDelaySec=30min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

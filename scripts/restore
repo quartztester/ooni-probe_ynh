@@ -1,0 +1,21 @@
+#!/bin/bash
+source /usr/share/yunohost/helpers
+
+ynh_script_progression "Restoring OONI Probe config..."
+mkdir -p "$install_dir/.ooniprobe"
+ynh_safe_rm "$install_dir/.ooniprobe/config.json"
+ynh_restore "$install_dir/.ooniprobe/config.json"
+ynh_safe_rm "$install_dir/.ooniprobe/db"
+ynh_restore "$install_dir/.ooniprobe/db"
+chown -R "$app:$app" "$install_dir/.ooniprobe"
+
+# The units were ynh_backup'd, so they must be restored too — a restore onto a
+# fresh machine has NO service/timer files, and without them nothing ever runs.
+ynh_script_progression "Restoring systemd service and timer..."
+ynh_safe_rm "/etc/systemd/system/$app.service"
+ynh_restore "/etc/systemd/system/$app.service"
+ynh_safe_rm "/etc/systemd/system/$app.timer"
+ynh_restore "/etc/systemd/system/$app.timer"
+systemctl daemon-reload
+systemctl enable "$app.timer" --quiet
+systemctl restart "$app.timer"

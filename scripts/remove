@@ -1,0 +1,9 @@
+#!/bin/bash
+source /usr/share/yunohost/helpers
+
+ynh_script_progression "Removing OONI Probe timer and service..."
+systemctl disable "$app.timer" --quiet 2>/dev/null || true
+ynh_safe_rm "/etc/systemd/system/$app.timer"
+ynh_config_remove_systemd
+systemctl daemon-reload
+ynh_safe_rm "/usr/share/yunohost/applogos/$app.png"

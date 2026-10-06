@@ -1,0 +1,8 @@
+#!/bin/bash
+source /usr/share/yunohost/helpers
+
+ynh_script_progression "Backing up OONI Probe config..."
+ynh_backup "$install_dir/.ooniprobe/config.json"
+ynh_backup "$install_dir/.ooniprobe/db"
+ynh_backup "/etc/systemd/system/$app.service"
+ynh_backup "/etc/systemd/system/$app.timer"

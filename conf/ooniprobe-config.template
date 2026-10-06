@@ -1,0 +1,12 @@
+{
+ "_version": 1,
+ "_informed_consent": true,
+ "sharing": {
+  "upload_results": true
+ },
+ "nettests": {
+  "websites_max_runtime": 600,
+  "websites_url_limit": __URL_LIMIT__
+ },
+ "advanced": {}
+}
