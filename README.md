@@ -4,7 +4,7 @@ It shall NOT be edited by hand.
 -->
 
 <h1>
-  <img src="https://raw.githubusercontent.com/YunoHost/apps/main/logos/ooni-probe.png" width="32px" alt="Logo of OONI Probe">
+  <img src="doc/ooniprobe.png" width="32px" alt="Logo of OONI Probe">
   OONI Probe, packaged for YunoHost
 </h1>
 
@@ -24,20 +24,13 @@ Measures internet censorship (web-connectivity tests only) and publishes anonymo
 
 🛠️ Upstream OONI Probe repository: <https://github.com/ooni/probe-cli>
 
-Pull request are welcome and should target the [`testing` branch](https://github.com/YunoHost-Apps/ooni-probe_ynh/tree/testing).
-
-The `testing` branch can be tested using:
+Pull requests are welcome against the `main` branch of this fork; install the development state directly with:
 ```
 # fresh install:
-sudo yunohost app install https://github.com/YunoHost-Apps/ooni-probe_ynh/tree/testing
+sudo yunohost app install https://github.com/quartztester/ooni-probe_ynh
 
 # upgrade an existing install:
-sudo yunohost app upgrade ooni-probe -u https://github.com/YunoHost-Apps/ooni-probe_ynh/tree/testing
-```
-
-You can also switch to the testing branch to update from testing by default (as same as for APT when you chose to use a testing repos) with this command:
-```bash
-sudo yunohost app setting ooni-probe upgrade_channel -v testing
+sudo yunohost app upgrade ooni-probe -u https://github.com/quartztester/ooni-probe_ynh
 ```
 
 ### 📚 App packaging documentation
