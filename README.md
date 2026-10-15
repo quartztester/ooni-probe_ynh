@@ -4,14 +4,14 @@ It shall NOT be edited by hand.
 -->
 
 <h1>
-  <img src="doc/ooniprobe.png" width="32px" alt="Logo of OONI Probe">
+  <img src="logos/ooni-probe.png" width="32px" alt="Logo of OONI Probe">
   OONI Probe, packaged for YunoHost
 </h1>
 
 Measures internet censorship (web-connectivity tests only) and publishes anonymous measurements
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://ooni.org)
-![Version: 3.30.0~ynh1](https://img.shields.io/badge/Version-3.30.0~ynh1-rgb(18,138,11)?style=for-the-badge)
+![Version: 3.30.0~ynh1](https://img.shields.io/badge/Version-3.30.0~ynh1-rgb%2818,138,11%29?style=for-the-badge)
 
 <div align="center">
 <a href="https://github.com/quartztester/ooni-probe_ynh#readme"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>

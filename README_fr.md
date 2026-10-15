@@ -1,4 +1,7 @@
-# OONI Probe pour YunoHost
+<h1>
+  <img src="logos/ooni-probe.png" width="48" alt="OONI Probe logo">
+  OONI Probe pour YunoHost
+</h1>
 
 OONI Probe mesure la censure et les interférences réseau (tests de connectivité web uniquement) et publie des mesures anonymes sur ooni.org. Ce paquet exécute le binaire officiel via un minuteur systemd — pas d'interface web.
 
