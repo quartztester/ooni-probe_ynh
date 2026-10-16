@@ -35,6 +35,7 @@ ynh_config_add --template=systemd.timer \
     --destination="/etc/systemd/system/$app.timer"
 # Timer implicitly triggers <app>.service — must (re)render it too or systemd refuses the timer.
 ynh_config_add_systemd
+yunohost service add "$app.timer" --description="OONI Probe measurement timer"
 systemctl enable "$app.timer" --quiet
 chown -R "$app:$app" "$install_dir/.ooniprobe"
 systemctl daemon-reload
