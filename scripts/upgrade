@@ -1,15 +1,35 @@
 #!/bin/bash
+
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source _common.sh
 source /usr/share/yunohost/helpers
+
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
 
 ynh_script_progression "Refreshing OONI Probe config and timer..."
 # Re-provision binary (rollback of a failed install can deprovision sources)
 ynh_setup_source --dest_dir="$install_dir"
 chmod +x "$install_dir/ooniprobe"
 chown -R "$app:$app" "$install_dir"
+
+#=================================================
+# APP INITIAL CONFIGURATION
+#=================================================
+
 # Remove first so ynh_config_add always re-renders (checksum-skip safe)
 ynh_safe_rm "$install_dir/.ooniprobe/config.json"
 ynh_config_add --template=ooniprobe-config.template \
     --destination="$install_dir/.ooniprobe/config.json"
+
+#=================================================
+# SYSTEM CONFIGURATION
+#=================================================
+
 ynh_safe_rm "/etc/systemd/system/$app.timer"
 ynh_config_add --template=systemd.timer \
     --destination="/etc/systemd/system/$app.timer"
@@ -20,8 +40,17 @@ chown -R "$app:$app" "$install_dir/.ooniprobe"
 systemctl daemon-reload
 systemctl restart "$app.timer"
 
+#=================================================
+# SSO PORTAL LOGO
+#=================================================
+
 # Refresh portal logo if shipped by the package
 if [ -f "$YNH_APP_BASEDIR/doc/ooniprobe.png" ]; then
     cp "$YNH_APP_BASEDIR/doc/ooniprobe.png" "/usr/share/yunohost/applogos/$app.png"
     yunohost user permission update "$app.main" --logo "/usr/share/yunohost/applogos/$app.png" || true
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
 fi

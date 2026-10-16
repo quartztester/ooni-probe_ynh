@@ -1,8 +1,24 @@
 #!/bin/bash
+
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+# Keep this path for calling _common.sh inside the execution's context of backup and restore scripts
+source ../settings/scripts/_common.sh
 source /usr/share/yunohost/helpers
+
+#=================================================
+# BACKUP THE APP FILES AND SYSTEM CONFIGURATION
+#=================================================
 
 ynh_print_info "Backing up OONI Probe config..."
 ynh_backup "$install_dir/.ooniprobe/config.json"
 ynh_backup "$install_dir/.ooniprobe/db"
 ynh_backup "/etc/systemd/system/$app.service"
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
 ynh_backup "/etc/systemd/system/$app.timer"

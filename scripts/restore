@@ -1,5 +1,16 @@
 #!/bin/bash
+
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+# Keep this path for calling _common.sh inside the execution's context of backup and restore scripts
+source ../settings/scripts/_common.sh
 source /usr/share/yunohost/helpers
+
+#=================================================
+# RESTORE THE APP CONFIGURATION
+#=================================================
 
 ynh_script_progression "Restoring OONI Probe config..."
 mkdir -p "$install_dir/.ooniprobe"
@@ -8,6 +19,10 @@ ynh_restore "$install_dir/.ooniprobe/config.json"
 ynh_safe_rm "$install_dir/.ooniprobe/db"
 ynh_restore "$install_dir/.ooniprobe/db"
 chown -R "$app:$app" "$install_dir/.ooniprobe"
+
+#=================================================
+# RESTORE SYSTEM CONFIGURATION
+#=================================================
 
 # The units were ynh_backup'd, so they must be restored too — a restore onto a
 # fresh machine has NO service/timer files, and without them nothing ever runs.
@@ -18,4 +33,9 @@ ynh_safe_rm "/etc/systemd/system/$app.timer"
 ynh_restore "/etc/systemd/system/$app.timer"
 systemctl daemon-reload
 systemctl enable "$app.timer" --quiet
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
 systemctl restart "$app.timer"
