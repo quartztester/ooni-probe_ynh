@@ -7,6 +7,12 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+# multi_instance=false self-guard: a single machine-global probe home and scheduler.
+# YunoHost 12.1 does not refuse a second copy on its own.
+if [[ "$app" != "ooni-probe" && -d /etc/yunohost/apps/ooni-probe ]]; then
+	ynh_die "Only one instance of this app is supported (already installed as 'ooni-probe')."
+fi
+
 # Static binary + systemd timer app.
 
 #=================================================
