@@ -3,3 +3,5 @@
 test_format = 1.0
 
 [default]
+
+    test_upgrade_from.e5d06f4.name = "3.30.0~ynh1"

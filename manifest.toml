@@ -4,7 +4,7 @@ id = "ooni-probe"
 name = "OONI Probe"
 description.en = "Measures internet censorship (web-connectivity tests only) and publishes anonymous measurements"
 
-version = "3.30.0~ynh1"
+version = "3.31.0~ynh1"
 
 maintainers = []
 
@@ -45,7 +45,7 @@ ram.runtime = "100M"
         [resources.sources.main]
         extract = false
         rename = "ooniprobe"
-        amd64.url = "https://github.com/ooni/probe-cli/releases/download/v3.30.0/ooniprobe-linux-amd64"
-        amd64.sha256 = "53099f967a7ab0374c5c8c1c2c04ba028f09ff737b369caf6bcf10c34541fcf3"
-        arm64.url = "https://github.com/ooni/probe-cli/releases/download/v3.30.0/ooniprobe-linux-arm64"
-        arm64.sha256 = "e4831e12d5ba4c19d4b3a0eb6277826e2f3a898b9bf1f4cba1de58eebf70dcdd"
+        amd64.url = "https://github.com/ooni/probe-cli/releases/download/v3.31.0/ooniprobe-linux-amd64"
+        amd64.sha256 = "18920caf3e79df7d74360526bf881ef8f33eb5c29a97c8d2709829bffddb62c3"
+        arm64.url = "https://github.com/ooni/probe-cli/releases/download/v3.31.0/ooniprobe-linux-arm64"
+        arm64.sha256 = "1b300bc0be703d212c7130b7b4a0c8a23a0ade1a1742f30e7052baa4638fc9c4"
