@@ -18,6 +18,10 @@ Measures internet censorship (web-connectivity tests only) and publishes anonymo
 <a href="https://github.com/quartztester/ooni-probe_ynh/issues"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_report_an_issue.svg"/></a>
 </div>
 
+## Screenshots
+
+This app runs the ooniprobe web-connectivity tests headlessly on a schedule and publishes anonymous measurements; it exposes no web UI, so there is no UI to screenshot. Verify operation with `yunohost app log ooni-probe` and the test results under `/home/yunohost.app/ooni-probe`.
+
 ## 📦 Developer info
 
 🛠️ Upstream OONI Probe repository: <https://github.com/ooni/probe-cli>
