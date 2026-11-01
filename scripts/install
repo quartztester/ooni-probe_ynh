@@ -18,7 +18,7 @@ ynh_config_add --template=ooniprobe-config.template \
     --destination="$install_dir/.ooniprobe/config.json"
 
 ynh_script_progression "Provisioning app dirs..."
-mkdir -p "$install_dir/.ooniprobe/msmts" "$install_dir/.ooniprobe/engine"
+mkdir -p "$install_dir/.ooniprobe/msmts" "$install_dir/.ooniprobe/engine" "$install_dir/.ooniprobe/db"
 
 chown -R "$app:$app" "$install_dir"
 
