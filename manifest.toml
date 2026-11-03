@@ -4,7 +4,7 @@ id = "ooni-probe"
 name = "OONI Probe"
 description.en = "Measures internet censorship (web-connectivity tests only) and publishes anonymous measurements"
 
-version = "3.30.0~ynh2"
+version = "3.30.0~ynh3"
 
 maintainers = []
 
